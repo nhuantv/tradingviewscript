@@ -1,0 +1,37 @@
+//@version=4
+study('[Support & Res Price', overlay=true)
+
+
+testStartYear = input(2019, "Backtest Start Year")
+testStartMonth = input(10, "Backtest Start Month")
+testStartDay = input(20, "Backtest Start Day")
+testStartHour = input(0, "Backtest Start Hour")
+testStartMin = input(0, "Backtest Start Minute")
+testPeriodStart = timestamp(testStartYear,testStartMonth,testStartDay,testStartHour,testStartMin)
+testStopYear = input(2099, "Backtest Stop Year")
+testStopMonth = input(1, "Backtest Stop Month")
+testStopDay = input(30, "Backtest Stop Day")
+testPeriodStop = timestamp(testStopYear,testStopMonth,testStopDay,0,0)
+testPeriod() =>
+    time >= testPeriodStart and time <= testPeriodStop ? true : false
+
+
+lenH = input(title='Length High', type=input.integer, defval=20, minval=1)
+lenL = input(title='Length Low', type=input.integer, defval=20, minval=1)
+
+fun(src, len, isHigh, _style, _yloc, _color) =>
+    p = nz(src[len])
+    isFound = true
+    for i = 0 to len * 2
+        if isHigh and src[i] > p
+            isFound := false
+        if not isHigh and src[i] < p
+            isFound := false
+    if isFound and testPeriod() 
+        label.new(bar_index[len], p, tostring(p), style=_style, yloc=_yloc, color=_color)
+        line.new(bar_index[len], p, bar_index, p, extend=extend.right, color=_color)
+        
+
+
+fun(high, lenH, true, label.style_labeldown, yloc.abovebar, color.red)
+fun(low, lenL, false, label.style_labelup, yloc.belowbar, color.green)
