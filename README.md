@@ -2,6 +2,7 @@
  Hi Guys,
 
 We would like to you tradingview  script, I think that it's  can support you used in forex and crypto .
+ 👉 Detail here: https://richdadphat.capital/tradingview-script-system-for-you/
 
 💥 As chart system we had use some indicator:
 
