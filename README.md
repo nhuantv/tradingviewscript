@@ -14,9 +14,9 @@ Notes: it's tradingview script simple but it's can help easy trading, You can us
 
 It's free, If you like, you can donate to us as address below:
 
-👉 Donate to RichDadPhat.Capital:
+💥 Donate to RichDadPhat.Capital:
 
-point_right ERC-20 Address : 0x2060513eE68fFfF1092fFE5A76844724C176c623
+ 👉 ERC-20 Address : 0x2060513eE68fFfF1092fFE5A76844724C176c623
 
 + Website: https://richdadphat.capital
 + Twitter: https://twitter.com/RichDadPhat_Cap
