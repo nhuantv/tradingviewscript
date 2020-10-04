@@ -12,12 +12,11 @@ We would like to you tradingview  script, I think that it's  can support you use
 
 Notes: it's tradingview script simple but it's can help easy trading, You can use in forex and crypto and revise script for your idea (if you can do it).
 
-It's free, If you like, you can donate to us as address below:
-
-💥 Donate to RichDadPhat.Capital:
+💥 It's free, If you like, you can donate to us as address below:
 
  👉 ERC-20 Address : 0x2060513eE68fFfF1092fFE5A76844724C176c623
 
+💥 RichDadPhat.Capital Communication :
 + Website: https://richdadphat.capital
 + Twitter: https://twitter.com/RichDadPhat_Cap
 + Telegram channel: https://t.me/RichDadPhatCapital_Ann
