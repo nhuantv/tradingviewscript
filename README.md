@@ -1,4 +1,4 @@
-# tradingviewscript
+# Tradingviewscript Trading
  Hi Guys,
 
 We would like to you tradingview  script, I think that it's  can support you used in forex and crypto .
