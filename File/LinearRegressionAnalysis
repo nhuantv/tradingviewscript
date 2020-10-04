@@ -1,0 +1,77 @@
+//@version=4
+study(title = "Linear Regression Analysis", overlay = true)
+//INPUTS
+//
+c = input(close)
+len = input(100, minval=1),off= 0,dev= input(2, "Deviation")
+lreg = linreg(c, len, off), lreg_x =linreg(c, len, off+1)
+b = bar_index, s = lreg - lreg_x,intr = lreg - b*s
+dS = 0.0
+for i=0 to len-1
+    dS:= dS + pow(c[i]-(s*(b-i)+intr), 2)  
+de = sqrt(dS/(len))
+up = (-de*dev) + lreg
+down= (de*dev) + lreg
+//
+
+
+//
+var line1 = line.new(bar_index[0], down[0], bar_index, s, extend = extend.both)
+line.set_xy1(line1, bar_index[len], down[len])
+line.set_xy2(line1, bar_index[1], down[1])
+var label1 = label.new(bar_index, down, text = " High", color=color.orange,
+ style = label.style_label_lower_left, size = size.small)
+label.set_xy(label1,bar_index, line.get_price(line1, bar_index))
+//
+//
+var line2 = line.new(bar_index[0], up[0], bar_index, s, extend = extend.both)
+line.set_xy1(line2, bar_index[len], up[len])
+line.set_xy2(line2, bar_index[1], up[1])
+var label2 = label.new(bar_index, up, text = " Low", color=color.orange,
+ style = label.style_label_lower_left, size = size.small)
+label.set_xy(label2,bar_index, line.get_price(line2, bar_index))
+//
+var line3 = line.new(bar_index[0], lreg[0], bar_index, s, extend = extend.both)
+line.set_xy1(line3, bar_index[len], lreg[len])
+line.set_xy2(line3, bar_index[1], lreg[1])
+var label3 = label.new(bar_index, lreg, text = " Mid", color=color.orange,
+ style = label.style_label_lower_left, size = size.small)
+label.set_xy(label3,bar_index, line.get_price(line3, bar_index))
+//
+trend = input(true)
+if barstate.islast and trend  == true
+    line z = line.new(bar_index[1],up[1], bar_index,up,extend=extend.both,color=color.red,style=line.style_dashed,width=1)
+    line f = line.new(bar_index[1],lreg[1], bar_index,lreg,extend=extend.both,color=color.blue,style=line.style_dashed,width=1)
+    line w = line.new(bar_index[1],down[1], bar_index,down,extend=extend.both,color=color.green,style=line.style_dashed,width=1)
+    line.delete(z[1])
+    line.delete(f[1])
+    line.delete(w[1])
+    
+//
+t=0, x1 =  bar_index-len,x2 =  bar_index, y1 = s*( bar_index-len)+intr,y2 = lreg,u = t <= 0 or bar_index < t
+if u
+    line pr = line.new(x1, y1, x2, y2, xloc.bar_index, extend.right, color.red,style=line.style_dashed,width=2)
+    line.delete(pr[1])
+    line px = line.new(x1, de*dev + y1, x2, de*dev + y2, xloc.bar_index, extend.right,style=line.style_dashed,width=2)
+    line.delete(px[1])
+    line pz = line.new(x1, -de*dev + y1, x2, -de*dev + y2, xloc.bar_index, extend.right,style=line.style_dashed,width=2)
+    line.delete(pz[1])
+
+// Rounding levels to min tick
+nround(x) => 
+    n = round(x / syminfo.mintick) * syminfo.mintick
+//
+disp_panels = input(true, title="Display info panels?")
+fibs_label_off = 0
+fibs_label_size = input(size.tiny, options=[size.tiny, size.small, size.normal, size.large, size.huge], title="label size")
+r1_x = timenow + round(change(time)*fibs_label_off)
+r1_y = up
+text1 = "L : " + tostring(nround(up))
+s1_y = down
+text3 = "H : " + tostring(nround(down))
+
+R1_label = disp_panels ? label.new(x=r1_x, y=r1_y, text=text1, xloc=xloc.bar_time, yloc=yloc.price, color=color.yellow, style=label.style_labelup, textcolor=color.black, size=fibs_label_size) : na
+S1_label = disp_panels ? label.new(x=r1_x, y=s1_y, text=text3, xloc=xloc.bar_time, yloc=yloc.price, color=color.yellow, style=label.style_labelup, textcolor=color.black, size=fibs_label_size) : na
+
+label.delete(R1_label[1])
+label.delete(S1_label[1])
