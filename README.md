@@ -5,10 +5,10 @@ We would like to you tradingview  script, I think that it's  can support you use
 
 💥 As chart system we had use some indicator:
 
-+ Top/Buttom Price script
-+ Support & Resist script
++ Top/Buttom Price script: https://github.com/richdadphatcapital/tradingviewscript/blob/main/File/TopButtomScript
++ Support & Resist script: https://github.com/richdadphatcapital/tradingviewscript/blob/main/File/SupportAndResist
 + Use EMA 89 & 50 ( Add by hand)
-+ Line regression analysis script
++ Line regression analysis script: https://github.com/richdadphatcapital/tradingviewscript/blob/main/File/LinearRegressionAnalysis
 
 Notes: it's tradingview script simple but it's can help easy trading, You can use in forex and crypto and revise script for your idea (if you can do it).
 
